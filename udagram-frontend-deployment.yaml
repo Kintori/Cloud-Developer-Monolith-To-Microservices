@@ -19,7 +19,7 @@ spec:
         image: kintori/udagram-frontend
         imagePullPolicy: Always
         ports:
-        - containerPort: 8100
+        - containerPort: 80
         env:
           - name: URL
             valueFrom:

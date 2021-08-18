@@ -10,6 +10,7 @@ router.use('/auth', AuthRouter);
 router.get('/');
 
 router.get('/:id', async (req: Request, res: Response) => {
+  console.log(new Date().toLocaleString() + `: get /:id endpoint was requested for user api`);
   const {id} = req.params;
   const item = await User.findByPk(id);
   res.send(item);

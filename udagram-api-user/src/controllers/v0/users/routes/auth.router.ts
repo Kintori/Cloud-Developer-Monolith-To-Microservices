@@ -49,10 +49,12 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 router.get('/verification',
     requireAuth,
     async (req: Request, res: Response) => {
+      console.log(new Date().toLocaleString() + `: get verification endpoint was requested for user api`);
       return res.status(200).send({auth: true, message: 'Authenticated.'});
     });
 
 router.post('/login', async (req: Request, res: Response) => {
+  console.log(new Date().toLocaleString() + `: post login endpoint was requested for user api`);
   const email = req.body.email;
   const password = req.body.password;
 
@@ -81,6 +83,7 @@ router.post('/login', async (req: Request, res: Response) => {
 
 
 router.post('/', async (req: Request, res: Response) => {
+  console.log(new Date().toLocaleString() + `: post / endpoint was requested for user api`);
   const email = req.body.email;
   const plainTextPassword = req.body.password;
 
