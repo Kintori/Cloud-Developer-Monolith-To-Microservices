@@ -10,7 +10,7 @@ services:
       - ../set_env.sh:/code/set_env.sh
 #      - ./node_modules:/code/node_modules
     command: >
-      sh -c "source ./set_env.sh
+      sh -c "./set_env.sh
       && npm install -g @ionic/cli
       && ionic serve --external"
     expose:
