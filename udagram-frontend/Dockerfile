@@ -1,9 +1,15 @@
-FROM node:12.22.3
-RUN mkdir /code
-WORKDIR /code
-
-# Copy over project code
-COPY package.json /code
-RUN npm install
-COPY . /code/
-EXPOSE 8100
+## Build
+FROM beevelop/ionic:latest AS ionic
+# Create app directory
+WORKDIR /usr/src/app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
+RUN npm ci
+# Bundle app source
+COPY . .
+RUN ionic build
+## Run 
+FROM nginx:alpine
+#COPY www /usr/share/nginx/html
+COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
